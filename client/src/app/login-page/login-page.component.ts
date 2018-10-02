@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { AuthService } from '../shared/services/auth.service';
+import { MaterialService } from '../shared/classes/material.service';
 
 @Component({
   selector: 'app-login-page',
@@ -42,7 +43,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.sub = this.auth.login(this.form.value).subscribe(
       () => {this.router.navigate['/overview']},
       (error) => {
-        console.warn(error);
+        MaterialService.toast(error.error.message)
         this.form.enable();
       }
     )
