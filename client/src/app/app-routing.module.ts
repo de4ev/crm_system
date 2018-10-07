@@ -7,6 +7,8 @@ import {LoginPageComponent} from "./login-page/login-page.component";
 import {RegistrationPageComponent} from "./registration-page/registration-page.component";
 import { AuthGuard } from "./shared/classes/auth.guard";
 import { OverviewPageComponent } from "./overview-page/overview-page.component";
+import { CategoriesPageComponent } from "./categories-page/categories-page.component";
+import { AnalyticsPageComponent } from "./analytics-page/analytics-page.component";
 
 const routes: Routes = [
     {
@@ -18,7 +20,9 @@ const routes: Routes = [
     },
     {
       path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
-        {path: 'overview', component: OverviewPageComponent}
+        {path: 'overview', component: OverviewPageComponent},
+        {path: 'categories', component: CategoriesPageComponent},
+        {path: 'analytics', component: AnalyticsPageComponent}
       ]
     },
 
