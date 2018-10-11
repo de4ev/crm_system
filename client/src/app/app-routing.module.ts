@@ -9,6 +9,9 @@ import { AuthGuard } from "./shared/classes/auth.guard";
 import { OverviewPageComponent } from "./overview-page/overview-page.component";
 import { CategoriesPageComponent } from "./categories-page/categories-page.component";
 import { AnalyticsPageComponent } from "./analytics-page/analytics-page.component";
+import { HistoryPageComponent } from "./history-page/history-page.component";
+import { OrderPageComponent } from "./order-page/order-page.component";
+import { CategoriesFormComponent } from "./categories-page/categories-form/categories-form.component";
 
 const routes: Routes = [
     {
@@ -22,7 +25,11 @@ const routes: Routes = [
       path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
         {path: 'overview', component: OverviewPageComponent},
         {path: 'categories', component: CategoriesPageComponent},
-        {path: 'analytics', component: AnalyticsPageComponent}
+        {path: 'categories/new', component: CategoriesFormComponent},
+        {path: 'categories/:id', component: CategoriesFormComponent},
+        {path: 'analytics', component: AnalyticsPageComponent},
+        {path: 'history', component: HistoryPageComponent},
+        {path: 'order', component: OrderPageComponent}
       ]
     },
 
