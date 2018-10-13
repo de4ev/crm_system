@@ -21,8 +21,8 @@
           <input 
             id="name"
 						type="text"
-						FormControlName="name"
-						[ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched }"
+						formControlName="name"
+						[ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"
         	>
 					<label for="name">Название</label>
 					<span 
