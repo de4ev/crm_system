@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CategoriesService } from '../../shared/services/categories.service';
@@ -13,6 +13,9 @@ import { MaterialService } from '../../shared/classes/material.service';
 })
 export class CategoriesFormComponent implements OnInit {
 
+  @ViewChild('fileInput') fileInputRef: ElementRef
+
+  image: File
   form: FormGroup
   isNew = true
 
@@ -34,7 +37,6 @@ export class CategoriesFormComponent implements OnInit {
             return this.categoriesService.getById(params['id'])
           } 
           return of(null)
-
          }
         )
       )
@@ -50,6 +52,18 @@ export class CategoriesFormComponent implements OnInit {
         },
         error => MaterialService.toast(error.error.message)
       )
+  }
+
+  triggerClick() {
+    this.fileInputRef.nativeElement.click()
+  }
+
+  onFileUpload(event: any) {
+    const file = event.target.files[0]
+    this.image = file
+
+    // const reader = new FileReader()
+    // reader.onload()
   }
 
   onSubmit() {
