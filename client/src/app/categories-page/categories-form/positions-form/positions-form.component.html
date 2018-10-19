@@ -2,7 +2,7 @@
 	<div class="col s12">
 		<div class="page-subtitle">
 			<h4>Позиции:</h4>
-			<button class="waves-effect waves-light btn grey darken-1 btn-small modal-trigger" data-target="create-modal">
+			<button class="waves-effect waves-light btn grey darken-1 btn-small">
 				Добавить позицию
 			</button>
 		</div>
@@ -15,6 +15,7 @@
 				<a 
 					*ngFor="let position of positions" 
 					class="collection-item collection-item-icon"
+					(click)="onSelectPosition(position)"
 				>
 					<span>
 						{{position.name}} <strong>{{position.cost}} руб.</strong>
@@ -35,7 +36,7 @@
 </div>
 
 
-<div id="create-modal" class="modal">
+<div id="create-modal" class="modal" #modal>
 	<div class="modal-content">
 		<h4 class="mb1">Добавить позицию</h4>
 		<div class="input-field">
