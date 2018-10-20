@@ -19,7 +19,7 @@ export class MaterialService {
     static updateTextInputs() {
         M.updateTextFields()
     }
-    static initModal(modalRef: ElementRef) {
-        M.Modal.init(modalRef.nativeElement)
+    static initModal(modalRef: ElementRef): MaterialInstance {
+        return M.Modal.init(modalRef.nativeElement)
     }
 }
