@@ -12,7 +12,7 @@ const orderRoutes = require('./routes/order');
 const app = express();
 const keys = require('./config/keys')
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true })
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useCreateIndex: true})
     .then(() => console.log('MongoDB connected.'))
     .catch((error) => console.log(error))
 
