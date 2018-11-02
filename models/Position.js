@@ -6,7 +6,7 @@ const positionSchema = new Schema({
         type: String,
         required: true
     },
-    costs: {
+    cost: {
         type: Number,
         required: true
     },

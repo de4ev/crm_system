@@ -24,7 +24,10 @@
 						{{position.name}} <strong>{{position.cost}} руб.</strong>
 					</span>
 					<span>
-						<i class="material-icons">delete</i>
+						<i 
+							class="material-icons"
+							(click)="onDeletePosition(position)"
+						>delete</i>
 					</span>
 				</a>
 			</div>
@@ -75,10 +78,11 @@
 				type="button"
 				(click)="onCancel()" 
 				class="modal-action waves-effect waves-black btn-flat"
-			>Отмена
-		</button>
+				[disabled]="form.disabled"
+			>Отмена</button>
 			<button 
 				type="submit"
+				[disabled]="form.invalid || form.disabled"
 				class="modal-action btn waves-effect"
 			>Сохранить</button>
 		</div>
