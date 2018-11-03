@@ -21,7 +21,7 @@ module.exports.create = async function(req, res) {
             cost: req.body.cost,
             user: req.user.id
         }).save()
-        req.status(201).json(position)
+        res.status(201).json(position)
     } catch(e) {
         errorHandler(res, e)
     }
