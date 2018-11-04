@@ -24,7 +24,7 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required),
-      cost: new FormControl(null, [Validators.required, Validators.min(1)])
+      cost: new FormControl(1, [Validators.required, Validators.min(1)])
     })
     this.loading = true
     this.positionService.fetch(this.categoryId)
@@ -39,12 +39,18 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   onSelectPosition(position: Position) {
+    this.form.patchValue({
+      name: position.name,
+      cost: position.cost
+    })
     this.modal.open()
+    MaterialService.updateTextInputs()
   }
 
   onAddPosition() {
+    this.form.reset({name: '', cost: 1})
     this.modal.open()
-
+    MaterialService.updateTextInputs()
   }
 
   onCancel() {
@@ -67,6 +73,11 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
       error => {
         this.form.enable()
         MaterialService.toast(error.error.message)
+      },
+      () => {
+        this.modal.close()
+        this.form.reset({name: '', cost: 1})
+        this.form.enable()
       }
     )
   }

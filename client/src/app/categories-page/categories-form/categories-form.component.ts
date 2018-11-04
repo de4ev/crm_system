@@ -19,7 +19,7 @@ export class CategoriesFormComponent implements OnInit {
   image: File
   form: FormGroup
   isNew = true
-  imagePreview = ''
+  imagePreview: any
   category: Category
 
   constructor(private route: ActivatedRoute,

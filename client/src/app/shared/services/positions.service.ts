@@ -15,6 +15,6 @@ export class PositionService {
     }
     
     create(position: Position): Observable<Position> {
-        return this.http.post<Position>(`/api/position`, position)
+        return this.http.post<Position>('/api/position', position)
     }
 }
