@@ -15,7 +15,7 @@ module.exports.getByCategoryId = async function(req, res) {
 
 module.exports.create = async function(req, res) {
     try {
-        const position = new Position({
+        const position = await new Position({
             category: req.body.category,
             name: req.body.name,
             cost: req.body.cost,
@@ -31,7 +31,7 @@ module.exports.remove = async function(req, res) {
     try {
         await Position.remove({ _id: req.params.id })
         res.status(200).json({
-            message: 'Position has been deleted.'
+            message: 'Позиция была удалена.'
         })
     } catch(e) {
         errorHandler(res, e)
