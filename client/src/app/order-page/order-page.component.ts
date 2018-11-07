@@ -1,8 +1,9 @@
-import { OrderPosition } from './../shared/interfaces';
+import { OrderPosition, Order } from './../shared/interfaces';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MaterialService, MaterialInstance } from '../shared/classes/material.service';
 import { OrderService } from './order.service';
+import { OrdersService } from '../shared/services/orders.service';
 
 @Component({
   selector: 'app-order-page',
@@ -18,7 +19,8 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private ordersService: OrdersService
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,25 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.modal.close()
   }
   submit() {
-    this.modal.close()
+
+    const order: Order = {
+      list: this.orderService.list.map(item => {
+        delete item._id
+        return item
+      })
+    }
+    this.ordersService.create(order).subscribe(
+      newOrder => {
+        MaterialService.toast(`Заказ #${newOrder.order} был добавлен`)
+        this.orderService.clear()
+      },
+      error => {
+        MaterialService.toast(error.error.message)
+      },
+      () => {
+        this.modal.close()
+      }
+    )
   }
 
   ngOnDestroy() {

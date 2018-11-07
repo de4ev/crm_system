@@ -41,7 +41,7 @@ module.exports.getAll = async function(req, res) {
 
 module.exports.create = async function(req, res) {
     try {
-        const lastOrder = Order
+        const lastOrder = await Order
             .findOne({user: req.user.id})
             .sort({date: -1})
 
@@ -51,7 +51,7 @@ module.exports.create = async function(req, res) {
             list: req.body.list,
             user: req.user.id
         }).save()
-        res.status(200).json(order)
+        res.status(201).json(order)
     } catch(e) {
         errorHandler(res, e)
     }
