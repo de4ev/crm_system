@@ -45,7 +45,7 @@ module.exports.create = async function(req, res) {
             .findOne({user: req.user.id})
             .sort({date: -1})
 
-        const maxOrder = lastOrder ? lastOrder : 0
+        const maxOrder = lastOrder ? lastOrder.order : 0
         const order = await new Order({
             order: maxOrder + 1,
             list: req.body.list,
