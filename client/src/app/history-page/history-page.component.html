@@ -1,3 +1,81 @@
-<p>
-  history-page works!
-</p>
+<div class="page-title">
+  <h4>История заказов</h4>
+  <button 
+    class="btn btn-small" 
+    (click)="isFilterVisible = !isFilterVisible"
+    #tooltip
+    data-position="left" 
+    data-tooltip="Открыть фильтр"
+    [ngClass]="{
+      'active': isFilterVisible
+    }"
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+
+<app-history-filter *ngIf="isFilterVisible"></app-history-filter>
+
+<app-history-list></app-history-list>
+
+<div id="order-list" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="mb1">Заказ №5</h4>
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Количество</th>
+          <th>Цена</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Alvin</td>
+          <td>3</td>
+          <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="order-summary">
+      <p>Общая стоимость
+        <strong>22 231 руб.</strong>
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-action waves-effect waves-black btn-flat">Закрыть</button>
+  </div>
+</div>
+<div id="order-list" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 class="mb1">Заказ №5</h4>
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Количество</th>
+          <th>Цена</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Alvin</td>
+          <td>3</td>
+          <td>$0.87</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="order-summary">
+      <p>Общая стоимость
+        <strong>22 231 руб.</strong>
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-action waves-effect waves-black btn-flat">Закрыть</button>
+  </div>
+</div>
