@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Order } from '../../shared/interfaces';
 
 @Component({
   selector: 'app-history-list',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class HistoryListComponent implements OnInit {
 
   constructor() { }
+
+  @Input() orders: Order[]
 
   ngOnInit() {
   }

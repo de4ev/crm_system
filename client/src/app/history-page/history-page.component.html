@@ -17,65 +17,27 @@
 
 <app-history-filter *ngIf="isFilterVisible"></app-history-filter>
 
-<app-history-list></app-history-list>
+<div *ngIf="!reloading; else reloader">
+  <div *ngIf="orders.length > 0; else empty">
+    <app-history-list [orders]="orders"></app-history-list>
 
-<div id="order-list" class="modal modal-fixed-footer">
-  <div class="modal-content">
-    <h4 class="mb1">Заказ №5</h4>
-    <table class="highlight">
-      <thead>
-        <tr>
-          <th>Название</th>
-          <th>Количество</th>
-          <th>Цена</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>Alvin</td>
-          <td>3</td>
-          <td>$0.87</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="order-summary">
-      <p>Общая стоимость
-        <strong>22 231 руб.</strong>
-      </p>
+    <div class="center mb2" *ngIf="!noMoreOrders">
+      <button 
+        class="btn waves-effect grey darken-1 btn-small"
+        *ngIf="!loading; else loader"
+        (click)="loadMore()"
+      >Загрузить еще
+      </button>
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>  
     </div>
   </div>
-  <div class="modal-footer">
-    <button class="modal-action waves-effect waves-black btn-flat">Закрыть</button>
-  </div>
+  <ng-template #empty>
+    <div class="center">Заказов нет</div>
+  </ng-template>
 </div>
-<div id="order-list" class="modal modal-fixed-footer">
-  <div class="modal-content">
-    <h4 class="mb1">Заказ №5</h4>
-    <table class="highlight">
-      <thead>
-        <tr>
-          <th>Название</th>
-          <th>Количество</th>
-          <th>Цена</th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <tr>
-          <td>Alvin</td>
-          <td>3</td>
-          <td>$0.87</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="order-summary">
-      <p>Общая стоимость
-        <strong>22 231 руб.</strong>
-      </p>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button class="modal-action waves-effect waves-black btn-flat">Закрыть</button>
-  </div>
-</div>
+<ng-template #reloader>
+  <app-loader></app-loader>
+</ng-template>
