@@ -34,7 +34,7 @@
           <tr *ngFor="let item of orderService.list">
               <td>{{item.name}}</td>
               <td>{{item.quantity}}</td>
-              <td>${{item.cost}}</td>
+              <td>{{item.cost}} руб.</td>
               <td><i class="material-icons pointer" (click)="removePosition(item)">delete</i></td>
           </tr>
           </tbody>

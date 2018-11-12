@@ -8,6 +8,10 @@ export interface MaterialInstance {
     destroy?(): void
 }
 
+export interface MaterialDatePicker extends MaterialInstance {
+    date?: Date
+}
+
 export class MaterialService {
     static toast(message: string) {
         M.toast({html: message})
@@ -24,5 +28,12 @@ export class MaterialService {
     }
     static initTooltip(tooltipRef: ElementRef): MaterialInstance {
         return M.Tooltip.init(tooltipRef.nativeElement)
+    }
+    static initDatePicker(datePickerpRef: ElementRef, onClose: () => void): MaterialDatePicker {
+        return M.Datepicker.init(datePickerpRef.nativeElement, {
+            format: 'dd.mm.yyyy',
+            showClearBtn: true,
+            onClose
+        })
     }
 }

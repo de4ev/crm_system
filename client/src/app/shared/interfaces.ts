@@ -13,6 +13,7 @@ export interface Category {
     user?: string;
     _id?: string;
 }
+
 export interface Position {
     name: string;
     cost: number;
@@ -29,9 +30,16 @@ export interface Order {
     user?: string
     _id?: string
 }
+
 export interface OrderPosition {
     name: string
     cost: number
     quantity: number
     _id?: string
+}
+
+export interface Filter {
+    start?: Date,
+    end?: Date,
+    order?: number
 }

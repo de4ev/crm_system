@@ -1,10 +1,10 @@
 import { Subscription } from 'rxjs';
 import { OrdersService } from './../shared/services/orders.service';
-import { Order } from './../shared/interfaces';
+import { Order, Filter } from './../shared/interfaces';
 import { MaterialInstance, MaterialService } from './../shared/classes/material.service';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 
-const STEP = 3
+const STEP = 10
 
 @Component({
   selector: 'app-history-page',
@@ -61,6 +61,10 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
     )
   }
   
+  applyFilter(filter: Filter) {
+    
+  }
+
   ngAfterViewInit () {
     this.tooltip = MaterialService.initTooltip(this.tooltipRef)
   }
