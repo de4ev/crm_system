@@ -7,7 +7,7 @@ import { MaterialService, MaterialDatePicker } from 'src/app/shared/classes/mate
   templateUrl: './history-filter.component.html',
   styleUrls: ['./history-filter.component.css']
 })
-export class HistoryFilterComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HistoryFilterComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('start') startRef: ElementRef
   @ViewChild('end') endRef: ElementRef
@@ -16,11 +16,9 @@ export class HistoryFilterComponent implements OnInit, AfterViewInit, OnDestroy 
   start: MaterialDatePicker
   end: MaterialDatePicker
 
+  isValid = true
+
   constructor() { }
-
-  ngOnInit() {
-
-  }
 
   ngAfterViewInit() {
     this.start = MaterialService.initDatePicker(this.startRef, this.validate.bind(this))
@@ -28,7 +26,11 @@ export class HistoryFilterComponent implements OnInit, AfterViewInit, OnDestroy 
   }
   
   validate() {
-
+    if (!this.start.date || !this.end.date) {
+      this.isValid = true
+      return
+    }
+    this.isValid = this.start.date < this.end.date
   }
 
 
@@ -43,10 +45,10 @@ export class HistoryFilterComponent implements OnInit, AfterViewInit, OnDestroy 
     if (this.order) {
       filter.order = this.order
     }
-    if (this.start) {
+    if (this.start.date) {
       filter.start = this.start.date
     }
-    if (this.end) {
+    if (this.end.date) {
       filter.end = this.end.date
     }
 

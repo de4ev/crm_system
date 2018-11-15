@@ -20,6 +20,7 @@
   </div>
 
   <button 
+    [disabled]="!isValid"
     class="btn waves-effect wavers-light btn-small"
     (click)="submitFilter()"
   >Применить фильтр</button>

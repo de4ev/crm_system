@@ -23,6 +23,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   reloading = false
   noMoreOrders = false
   orders: Order[] = []
+  filter: Filter = {}
 
   offset = 0
   limit = STEP
@@ -42,11 +43,11 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fetch()
   }
 
-  fetch() {
-    const params = {
+  fetch() {    
+    const params = Object.assign({}, this.filter, {
       offset: this.offset,
       limit: this.limit
-    }
+    })
 
     this.oSub = this.ordersService.fetch(params).subscribe(
       orders => {
@@ -62,7 +63,15 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   
   applyFilter(filter: Filter) {
-    
+    this.orders = []
+    this.offset = 0
+    this.reloading = true
+    this.filter = filter
+    this.fetch()
+  }
+
+  isFiltered(): boolean {
+    return Object.keys(this.filter).length !== 0
   }
 
   ngAfterViewInit () {
