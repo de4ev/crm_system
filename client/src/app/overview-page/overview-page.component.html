@@ -1,7 +1,10 @@
 <div class="page-title">
     <h4>
-        Обзор за вчера (09.04.2018)
-        <i class="material-icons black-text pointer">info_outline</i>
+        Обзор за вчера ({{yesterday | date:'dd.MM.yyyy'}})
+        <i 
+            class="material-icons black-text pointer"
+            (click)="openInfo()"
+        >info_outline</i>
     </h4>
 </div>
 
@@ -16,12 +19,12 @@
                 <h3 
                   [ngClass]="{
                     'green-text text-darken-2': data.gain.isHigher,
-                    'red-text': data.gain.isHigher
+                    'red-text': !data.gain.isHigher
                   }"
                   class="m0 mb1"
                 >
                     <i class="material-icons">
-                        {{data.gain.isHigher ? arrow_upward : arrow_downward}}
+                        {{data.gain.isHigher ? 'arrow_upward' : 'arrow_downward'}}
                     </i>
                     {{data.gain.percent}}%
                 </h3>
@@ -42,11 +45,11 @@
                 <h3 
                   [ngClass]="{
                     'green-text text-darken-2': data.orders.isHigher,
-                    'red-text': data.orders.isHigher
+                    'red-text': !data.orders.isHigher
                   }"
                   class="m0 mb1">
                     <i class="material-icons">
-                      {{data.orders.isHigher ? arrow_upward : arrow_downward}}
+                      {{data.orders.isHigher ? 'arrow_upward' : 'arrow_downward'}}
                     </i>
                     {{data.orders.percent}}%
                 </h3>
@@ -63,3 +66,10 @@
 <ng-template #loader>
   <app-loader></app-loader>
 </ng-template>
+
+<div class="tap-target" data-target="menu" #tapTarget>
+    <div class="tap-target-content">
+        <h5>Зачем нужна эта страница?</h5>
+        <p>Страница “Обзор” покажет динамику продаж за предыдущий день. Сравнение со средним значениями поможет вам понять, как идут дела у Вашего бизнеса.</p>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+import { MaterialInstance } from 'src/app/shared/classes/material.service';
 import { ElementRef } from "@angular/core";
 
 declare var M
@@ -35,5 +36,8 @@ export class MaterialService {
             showClearBtn: true,
             onClose
         })
+    }
+    static initTapTarget(tapTargetRef: ElementRef): MaterialInstance {
+        return M.TapTarget.init(tapTargetRef.nativeElement)
     }
 }
